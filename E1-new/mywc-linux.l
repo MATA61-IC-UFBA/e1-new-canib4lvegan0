@@ -15,12 +15,12 @@ int yylex();
 %%
 [a-zA-ZÀ-ÖØ-öø-ÿ0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]+ { words++; chars += strlen(yytext); }
 \n                                                         { chars++; lines++; }                
-.                                                          { chars++; }   
+.                                                          { chars++; }              
 %%
 
 int main(int argc, char **argv)
 {   
-    // printf("(I) mywc\n");
+    // printf("(II) mywc-linux\n");
     FILE *file;
 
     if (argc != 2) {
@@ -36,6 +36,6 @@ int main(int argc, char **argv)
     yyin = file;
     yylex();
     fclose(file);
-    printf("%8d%8d%8d\n", lines, words, chars);
+    printf("%8d%8d%8d %s\n", lines, words, chars, argv[1]);
     return 0;
 }
